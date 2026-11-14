@@ -171,6 +171,15 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
             margin-bottom: 4px;
         }
     </style>
+    <script>
+        (function(){
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body class="login">
     <div class="reset-card">

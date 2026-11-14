@@ -224,7 +224,8 @@ $nav = ['dashboard' => 'LayoutDashboard', 'products' => 'Package', 'categories' 
     <script>
         // Apply theme before paint to avoid flash
         (function(){
-            var t = localStorage.getItem('theme');
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
             if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }

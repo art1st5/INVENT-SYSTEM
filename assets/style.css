@@ -1101,3 +1101,32 @@ tr[style*="cursor:pointer"]:hover td {
     grid-column: auto;
   }
 }
+
+/* Dark-mode-only contrast fixes; light theme and layout remain unchanged. */
+[data-theme="dark"] { color-scheme: dark; --muted: #94a3b8; --blue: #60a5fa; }
+[data-theme="dark"] th, [data-theme="dark"] td small,
+[data-theme="dark"] .empty, [data-theme="dark"] .catalog-info small { color: #94a3b8; }
+[data-theme="dark"] .eyebrow, [data-theme="dark"] .category-link,
+[data-theme="dark"] .panel-title a { color: #60a5fa; }
+[data-theme="dark"] .btn.primary { background: #2563eb; border-color: #2563eb; }
+[data-theme="dark"] .modal-head button { color: var(--ink); }
+[data-theme="dark"] .cat-row-clickable:hover { background: #1a2a42; }
+[data-theme="dark"] .pill.good { background: #123526; color: #86efac; }
+[data-theme="dark"] .pill.warning { background: #392b15; color: #fcd34d; }
+[data-theme="dark"] .pill.danger, [data-theme="dark"] .danger-btn { background: #401e29; color: #fda4af; border-color: #713344; }
+[data-theme="dark"] .pill.muted { background: #29374c; color: #cbd5e1; }
+[data-theme="dark"] .undo-btn { background: #203653; color: #93c5fd; border-color: #365578; }
+[data-theme="dark"] .danger-btn:hover { background: #582635; }
+[data-theme="dark"] .undo-btn:hover { background: #29466b; }
+[data-theme="dark"] input::placeholder, [data-theme="dark"] textarea::placeholder { color: #94a3b8; }
+[data-theme="dark"] label input:focus, [data-theme="dark"] label select:focus, [data-theme="dark"] label textarea:focus { border-color: #60a5fa; }
+[data-theme="dark"] strong[style*="#17965c"] { color: #86efac !important; }
+[data-theme="dark"] strong[style*="#d34750"] { color: #fda4af !important; }
+[data-theme="dark"] .reset-card { background: #172035; color: var(--ink); }
+[data-theme="dark"] .user-option, [data-theme="dark"] .divider { border-color: var(--border); }
+[data-theme="dark"] .user-option:hover { background: #1a2a42; }
+[data-theme="dark"] .user-option .uname { color: var(--ink); }
+[data-theme="dark"] .user-option .urole { background: #203653; color: #93c5fd; }
+[data-theme="dark"] .user-option .urole.owner-badge, [data-theme="dark"] .security-note { background: #392b15; color: #fcd34d; border-color: #665020; }
+[data-theme="dark"] .back-link, [data-theme="dark"] .login-card a { color: #93c5fd !important; }
+[data-theme="dark"] .reset-card p[style*="#536175"] { color: var(--muted) !important; }

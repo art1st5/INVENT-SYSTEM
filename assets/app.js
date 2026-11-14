@@ -153,12 +153,13 @@ function applyTheme(dark) {
 function toggleDarkMode() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     applyTheme(!isDark);
-    localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+    try { localStorage.setItem('theme', !isDark ? 'dark' : 'light'); } catch (e) {}
 }
 
 // Apply saved preference immediately on load (no flash)
 (function () {
-    const saved = localStorage.getItem('theme');
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(saved ? saved === 'dark' : prefersDark);
 })();
