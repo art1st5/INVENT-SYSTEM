@@ -1,0 +1,26 @@
+# ── Uploaded product images ───────────────────────────────────────────────────
+# Keep the folder in git (via .gitkeep) but ignore actual uploaded files
+uploads/*
+!uploads/.gitkeep
+
+# ── OS / editor junk ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+error_log
+
+# ── XAMPP / PHP ───────────────────────────────────────────────────────────────
+# If you ever add Composer, exclude the vendor folder (not committed to git)
+vendor/
+composer.lock
+
+# ── Sensitive files — never commit these ─────────────────────────────────────
+# If you ever split config to a .env file, exclude it here
+.env
+.env.*

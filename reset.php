@@ -67,20 +67,20 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Matet • Account Recovery</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=4">
     <style>
         .reset-card {
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 20px 70px #17243a17;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.08);
             width: min(480px, 90vw);
         }
         .reset-card h1 {
             margin-bottom: 6px;
         }
         .reset-card .subtitle {
-            color: #8b96a8;
+            color: var(--muted);
             margin-bottom: 28px;
             font-size: 13px;
         }
@@ -95,48 +95,48 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
             align-items: center;
             gap: 12px;
             padding: 12px 15px;
-            border: 1px solid #e8edf3;
+            border: 1px solid #d8d8d8;
             border-radius: 8px;
             cursor: pointer;
             transition: border-color 0.15s, background 0.15s;
         }
         .user-option:hover {
-            background: #f4f7fb;
+            background: #f5f5f5;
         }
         .user-option input[type="radio"] {
             width: auto;
             margin: 0;
-            accent-color: #2563eb;
+            accent-color: #111111;
         }
         .user-option .uname {
             font-weight: 700;
-            color: #1b2738;
+            color: #0a0a0a;
             font-size: 13px;
         }
         .user-option .urole {
             font-size: 11px;
-            color: #8b96a8;
+            color: var(--muted);
             margin-left: auto;
-            background: #eef2ff;
-            color: #2563eb;
+            background: #eeeeee;
+            color: #111111;
             padding: 3px 8px;
             border-radius: 20px;
             font-weight: 600;
         }
         .user-option .urole.owner-badge {
-            background: #fef3c7;
-            color: #d97706;
+            background: #e8e8e8;
+            color: #333333;
         }
         .divider {
             border: none;
-            border-top: 1px solid #e8edf3;
+            border-top: 1px solid #d8d8d8;
             margin: 24px 0;
         }
         .back-link {
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #2563eb;
+            color: #111111;
             font-size: 13px;
             font-weight: 600;
         }
@@ -144,26 +144,26 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
             text-decoration: underline;
         }
         .success {
-            background: #e4f8ed;
-            color: #177e4c;
+            background: #e8e8e8;
+            color: #1a1a1a;
             padding: 13px 16px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
         .alert {
-            background: #ffebee;
-            color: #b3273b;
+            background: #e8e8e8;
+            color: #1a1a1a;
             padding: 13px 16px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
         .security-note {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
+            background: #f0f0f0;
+            border: 1px solid #cccccc;
             border-radius: 8px;
             padding: 12px 15px;
             font-size: 12px;
-            color: #92400e;
+            color: #333333;
             margin-bottom: 24px;
         }
         .security-note strong {
@@ -172,9 +172,9 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
         }
     </style>
     <script>
-        (function(){
+        (function () {
             var t = null;
-            try { t = localStorage.getItem('theme'); } catch (e) {}
+            try { t = localStorage.getItem('theme'); } catch(e) {}
             if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -203,12 +203,12 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
             <?php endif; ?>
 
             <?php if (!$users): ?>
-                <p style="color:#8b96a8;text-align:center">No accounts found in the database.</p>
+                <p style="color:var(--muted);text-align:center">No accounts found in the database.</p>
             <?php else: ?>
                 <form method="post">
                     <input type="hidden" name="csrf" value="<?= h(csrf()) ?>">
 
-                    <p style="font-size:12px;font-weight:700;color:#536175;margin-bottom:10px">
+                    <p style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:10px">
                         Step 1 — Select the account to reset
                     </p>
                     <div class="user-list">
@@ -231,7 +231,7 @@ $users = $pdo->query('SELECT user_id, user_name, role FROM users ORDER BY role, 
 
                     <hr class="divider">
 
-                    <p style="font-size:12px;font-weight:700;color:#536175;margin-bottom:16px">
+                    <p style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:16px">
                         Step 2 — Set a new password
                     </p>
 
