@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Password recovery protected by the configured reset key. Customize recovery presentation
+ * here and the key in config.php; do not expose this tool publicly.
+ */
 /**
  * reset.php — Account recovery tool
  *

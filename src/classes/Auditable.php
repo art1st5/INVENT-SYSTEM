@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Interface defining the logging contract. Customize only when all implementing loggers and
+ * their callers can be updated together.
+ */
 /**
  * src/classes/Auditable.php
  *
@@ -16,5 +21,6 @@ interface Auditable
      * @param string $action  Short action label e.g. "Save product"
      * @param string $details Longer description of what changed
      */
+    // Customization: Coordinate audit fields with the audit table; retain actor identity.
     public function log(int $userId, string $action, string $details = ''): void;
 }

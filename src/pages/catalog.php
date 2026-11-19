@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Displays active products as catalog cards with category filtering. Customize card layout,
+ * filter appearance and labels in this template.
+ */
 /**
  * src/pages/catalog.php — Product catalog view.
  * Matches the employee storefront card style.

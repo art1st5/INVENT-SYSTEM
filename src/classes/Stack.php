@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Last-in-first-out collection with push, pop, peek and serialization helpers. Customize
+ * stack usage at call sites; preserve LIFO behavior and empty-stack handling.
+ */
 /**
  * src/classes/Stack.php
  *
@@ -26,6 +31,7 @@ class Stack
      *
      * @param mixed $item Any value to store.
      */
+    // Customization: Adds to the top; preserve last-in, first-out behavior.
     public function push(mixed $item): void
     {
         $this->items[] = $item;
@@ -37,6 +43,7 @@ class Stack
      * @return mixed The item that was on top.
      * @throws UnderflowException if the stack is empty.
      */
+    // Customization: Removes the newest item; preserve empty-stack handling.
     public function pop(): mixed
     {
         if ($this->isEmpty()) {
@@ -51,6 +58,7 @@ class Stack
      * @return mixed The top item.
      * @throws UnderflowException if the stack is empty.
      */
+    // Customization: Reads the newest item without removing it.
     public function peek(): mixed
     {
         if ($this->isEmpty()) {
@@ -62,6 +70,7 @@ class Stack
     /**
      * isEmpty() — Check whether the stack contains any items.
      */
+    // Customization: Checks whether the stack has entries.
     public function isEmpty(): bool
     {
         return empty($this->items);
@@ -70,6 +79,7 @@ class Stack
     /**
      * size() — Return the number of items currently on the stack.
      */
+    // Customization: Returns the number of entries.
     public function size(): int
     {
         return count($this->items);
@@ -79,6 +89,7 @@ class Stack
      * toArray() — Return all items as an array (bottom → top order).
      * Useful for persisting the stack to a session.
      */
+    // Customization: Exports the stack for storage or transfer.
     public function toArray(): array
     {
         return $this->items;
@@ -89,6 +100,7 @@ class Stack
      *
      * @param array $items Previously stored items, bottom → top.
      */
+    // Customization: Recreates the stack from stored entries.
     public static function fromArray(array $items): self
     {
         $stack = new self();

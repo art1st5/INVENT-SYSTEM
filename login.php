@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Authenticates active staff and renders the sign-in form. Customize branding and form
+ * presentation here; preserve password verification and session regeneration.
+ */
 /**
  * login.php — Staff login page
  *

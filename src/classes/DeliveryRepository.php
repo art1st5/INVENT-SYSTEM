@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Records and approves deliveries and coordinates stock updates. Customize delivery
+ * validation and status rules here, keeping stock changes and database transactions
+ * consistent.
+ */
 /**
  * src/classes/DeliveryRepository.php
  *
@@ -10,6 +16,7 @@ class DeliveryRepository extends BaseRepository
 {
     private ProductRepository $products;
 
+    // Customization: Dependencies are initialized here; coordinate changes with object creation sites.
     public function __construct(PDO $pdo, Auditable $logger, ProductRepository $products)
     {
         parent::__construct($pdo, $logger);
@@ -23,6 +30,7 @@ class DeliveryRepository extends BaseRepository
      * @param int   $userId Who is recording it
      * @return int  The new delivery_id
      */
+    // Customization: Coordinate delivery fields with the delivery form and database schema.
     public function record(array $data, int $userId): int
     {
         $this->pdo->beginTransaction();
@@ -85,6 +93,7 @@ class DeliveryRepository extends BaseRepository
      * @param int $deliveryId  The delivery to approve
      * @param int $userId      Who is approving
      */
+    // Customization: Preserve atomic stock updates and approval identity tracking.
     public function approve(int $deliveryId, int $userId): void
     {
         $this->pdo->beginTransaction();
@@ -146,6 +155,7 @@ class DeliveryRepository extends BaseRepository
     /**
      * getRecent() — Fetch the most recent deliveries with full detail.
      */
+    // Customization: The limit controls how many recent records are retrieved.
     public function getRecent(int $limit = 100): array
     {
         return $this->queryAll(

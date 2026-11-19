@@ -1,5 +1,12 @@
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Shared visual styling. Customize :root variables and dark-theme overrides for colors, font
+ * import for typography, and component rules for spacing and layout. Check both themes when
+ * changing foreground/background colors.
+ */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* Customization: Edit shared theme values here; check overrides in both modes. */
 :root {
   --bg:     #f5f5f5;
   --ink:    #0a0a0a;
@@ -931,6 +938,7 @@ tr[style*="cursor:pointer"]:hover td {
   width: 100%;
 }
 
+/* Customization: Adjust this breakpoint to control responsive layouts; test nearby viewport widths. */
 @media (max-width: 1100px) {
   .stats {
     grid-template-columns: repeat(2, 1fr);
@@ -940,6 +948,7 @@ tr[style*="cursor:pointer"]:hover td {
   }
 }
 
+/* Customization: Adjust this breakpoint to control responsive layouts; test nearby viewport widths. */
 @media (max-width: 760px) {
   .layout {
     display: block;
@@ -985,6 +994,7 @@ tr[style*="cursor:pointer"]:hover td {
   }
 }
 
+/* Customization: Adjust this breakpoint to control responsive layouts; test nearby viewport widths. */
 @media (max-width: 480px) {
   .stats {
     grid-template-columns: 1fr 1fr;
@@ -1144,6 +1154,7 @@ input[type="checkbox"] {
 
 
 /* Accessible foreground/background pairs for both themes. */
+/* Customization: Edit shared theme values here; check overrides in both modes. */
 :root {
   --surface: #ffffff;
   --field-bg: #fafafa;

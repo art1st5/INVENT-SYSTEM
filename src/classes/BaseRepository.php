@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Abstract parent providing common prepared query, queryAll, execute and lastId helpers.
+ * Customize shared database behavior here; changes affect subclasses.
+ */
 /**
  * src/classes/BaseRepository.php
  *
@@ -17,6 +22,7 @@ abstract class BaseRepository
     protected PDO      $pdo;
     protected Auditable $logger;
 
+    // Customization: Dependencies are initialized here; coordinate changes with object creation sites.
     public function __construct(PDO $pdo, Auditable $logger)
     {
         $this->pdo    = $pdo;
@@ -27,6 +33,7 @@ abstract class BaseRepository
      * query() — Run a SELECT and return a single row.
      * ABSTRACTION: child classes call this without knowing PDO internals.
      */
+    // Customization: Keep bound parameters separate from SQL text.
     protected function query(string $sql, array $params = []): ?array
     {
         $stmt = $this->pdo->prepare($sql);
@@ -38,6 +45,7 @@ abstract class BaseRepository
     /**
      * queryAll() — Run a SELECT and return all matching rows.
      */
+    // Customization: Keep bound parameters and the returned row collection consistent.
     protected function queryAll(string $sql, array $params = []): array
     {
         $stmt = $this->pdo->prepare($sql);
@@ -48,6 +56,7 @@ abstract class BaseRepository
     /**
      * execute() — Run an INSERT / UPDATE / DELETE statement.
      */
+    // Customization: Keep bound parameters and write operations consistent.
     protected function execute(string $sql, array $params = []): void
     {
         $this->pdo->prepare($sql)->execute($params);
@@ -56,6 +65,7 @@ abstract class BaseRepository
     /**
      * lastId() — Return the last auto-incremented ID after an INSERT.
      */
+    // Customization: Use the inserted ID on the same database connection.
     protected function lastId(): int
     {
         return (int)$this->pdo->lastInsertId();

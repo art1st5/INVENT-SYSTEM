@@ -1,10 +1,16 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Reads delivery form inputs and delegates recording/approval to DeliveryRepository.
+ * Customize form defaults and validation here; coordinate fields with the delivery page.
+ */
 /**
  * src/handlers/deliveries.php
  *
  * Uses DeliveryRepository (OOP layer) for all delivery operations.
  */
 
+// Action delivery: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'delivery') {
 
     $id       = (int)($_POST['product']  ?? 0);
@@ -44,6 +50,7 @@ if ($act === 'delivery') {
     go('deliveries');
 }
 
+// Action receive_delivery: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'receive_delivery') {
 
     $id = (int)($_POST['id'] ?? 0);

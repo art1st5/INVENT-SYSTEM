@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Inventory table with search, status filtering and product actions. Customize displayed
+ * columns and toolbar layout; preserve IDs and data attributes used by app.js.
+ */
 /**
  * src/pages/products.php — Product inventory list page template.
  *

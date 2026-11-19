@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Concrete implementation of Auditable that records activity in audit_logs. Customize
+ * logging details and coordinate schema changes with database.sql.
+ */
 /**
  * src/classes/AuditLogger.php
  *
@@ -13,6 +18,7 @@ class AuditLogger implements Auditable
 {
     private PDO $pdo;
 
+    // Customization: Dependencies are initialized here; coordinate changes with object creation sites.
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
@@ -21,6 +27,7 @@ class AuditLogger implements Auditable
     /**
      * log() — Insert a row into audit_logs.
      */
+    // Customization: Coordinate audit fields with the audit table; retain actor identity.
     public function log(int $userId, string $action, string $details = ''): void
     {
         $stmt = $this->pdo->prepare(

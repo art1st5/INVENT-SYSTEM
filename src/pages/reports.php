@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Calculates and displays period-based business reports. Customize default $period,
+ * supported date filters and report limits here; keep report totals consistent with
+ * transaction details.
+ */
 /**
  * src/pages/reports.php — Business reports page template.
  *

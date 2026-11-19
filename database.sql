@@ -1,3 +1,7 @@
+-- FUNCTION AND CUSTOMIZATION (developer guide):
+-- Creates inventory database tables, relationships and seed data. Customize schema, defaults
+-- and seed records here; existing installations need migrations. Current role enum is owner,
+-- assistant, employee; coordinate role changes with PHP.
 -- =============================================================================
 -- database.sql — Database schema for Matet Inventory System
 --
@@ -35,6 +39,7 @@ USE matet_inventory;
 -- active: set to 0 to disable an account without deleting it
 -- user_pw: passwords are stored as bcrypt hashes (never plain text)
 -- =============================================================================
+-- Schema customization: coordinate changes to users with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS users (
     user_id   INT AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(80)                                   NOT NULL UNIQUE,
@@ -48,6 +53,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- Product categories used to group inventory items.
 -- Examples: Tires & Wheels, Engine Parts, Accessories
 -- =============================================================================
+-- Schema customization: coordinate changes to categories with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS categories (
     category_id   INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE, -- e.g. "Engine Parts"
@@ -59,6 +65,7 @@ CREATE TABLE IF NOT EXISTS categories (
 -- Companies or individuals who supply products to the shop.
 -- Each product is linked to one supplier.
 -- =============================================================================
+-- Schema customization: coordinate changes to suppliers with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS suppliers (
     supplier_id   INT AUTO_INCREMENT PRIMARY KEY,
     supplier_name VARCHAR(150) NOT NULL,
@@ -82,6 +89,7 @@ CREATE TABLE IF NOT EXISTS suppliers (
 --   - You cannot assign a supplier_id that does not exist in suppliers
 -- CHECK constraint ensures stock can never go below zero.
 -- =============================================================================
+-- Schema customization: coordinate changes to products with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS products (
     product_id       INT AUTO_INCREMENT PRIMARY KEY,
     category_id      INT            NOT NULL,
@@ -105,6 +113,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- One row per cash sale session. A sale may cover one product at a time.
 -- The admin_id records which staff member processed the sale.
 -- =============================================================================
+-- Schema customization: coordinate changes to transactions with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS transactions (
     transaction_id   INT AUTO_INCREMENT PRIMARY KEY,
     admin_id         INT            NULL,                                        -- NULL if the staff account was deleted
@@ -120,6 +129,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- Prices and costs are recorded HERE at the time of sale so that
 -- later changes to the product's price do not alter historical profit data.
 -- =============================================================================
+-- Schema customization: coordinate changes to product_transactions with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS product_transactions (
     product_transaction_id INT AUTO_INCREMENT PRIMARY KEY,
     transaction_id         INT            NOT NULL,
@@ -141,6 +151,7 @@ CREATE TABLE IF NOT EXISTS product_transactions (
 --   'received'   — stock has arrived and been counted into inventory
 --   'cancelled'  — delivery was cancelled
 -- =============================================================================
+-- Schema customization: coordinate changes to deliveries with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS deliveries (
     delivery_id     INT AUTO_INCREMENT PRIMARY KEY,
     supplier_id     INT                                       NULL,              -- optional; NULL if not specified
@@ -159,6 +170,7 @@ CREATE TABLE IF NOT EXISTS deliveries (
 -- unit_cost is recorded here so the product's stored cost can be updated
 -- each time new stock arrives at a potentially different price.
 -- =============================================================================
+-- Schema customization: coordinate changes to delivery_details with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS delivery_details (
     delivery_details_id INT AUTO_INCREMENT PRIMARY KEY,
     delivery_id         INT            NOT NULL,
@@ -177,6 +189,7 @@ CREATE TABLE IF NOT EXISTS delivery_details (
 -- Provides a complete, tamper-evident history of who did what and when.
 -- Only the owner role can view this log (page=audit in index.php).
 -- =============================================================================
+-- Schema customization: coordinate changes to audit_logs with foreign keys, queries and PHP handlers; migrate existing databases separately.
 CREATE TABLE IF NOT EXISTS audit_logs (
     log_id     INT AUTO_INCREMENT PRIMARY KEY,
     user_id    INT          NULL,                   -- NULL if the staff account was deleted

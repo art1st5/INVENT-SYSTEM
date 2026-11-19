@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Builds sale previews and handles confirmation, cancellation and undo actions. Customize
+ * cart validation and feedback here; stock persistence belongs in TransactionRepository.
+ */
 /**
  * src/handlers/transactions.php
  *
@@ -7,6 +12,7 @@
  */
 
 // ── Preview ───────────────────────────────────────────────────────────────────
+// Action sale_preview: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'sale_preview') {
 
     $rawItems = $_POST['items'] ?? [];
@@ -62,6 +68,7 @@ if ($act === 'sale_preview') {
 }
 
 // ── Confirm ───────────────────────────────────────────────────────────────────
+// Action sale_confirm: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'sale_confirm') {
 
     $pending = $_SESSION['pending_sale'] ?? null;
@@ -86,12 +93,14 @@ if ($act === 'sale_confirm') {
 }
 
 // ── Cancel ────────────────────────────────────────────────────────────────────
+// Action sale_cancel: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'sale_cancel') {
     unset($_SESSION['pending_sale']);
     go('transactions');
 }
 
 // ── Undo ──────────────────────────────────────────────────────────────────────
+// Action sale_undo: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'sale_undo') {
     owner();
     $tid = (int)($_POST['transaction_id'] ?? 0);

@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Implements linear search and binary search. Linear search scans records; binary search
+ * requires data sorted by the same comparison key. Customize search keys at call sites
+ * rather than breaking ordering assumptions.
+ */
 /**
  * src/classes/SearchAlgorithms.php
  *
@@ -31,6 +37,7 @@ class SearchAlgorithms
      * @param mixed  $value The value to search for.
      * @return array|null   The first matching row, or null if not found.
      */
+    // Customization: Change the lookup key at the caller; no sorted input is required.
     public static function linearSearch(array $data, string $key, mixed $value): ?array
     {
         foreach ($data as $row) {
@@ -61,6 +68,7 @@ class SearchAlgorithms
      * @param string $value       The exact value to find (case-insensitive).
      * @return array|null         The matching row, or null if not found.
      */
+    // Customization: Use the same comparison key and ordering as the sorting step.
     public static function binarySearch(array $data, string $key, string $value): ?array
     {
         $low   = 0;

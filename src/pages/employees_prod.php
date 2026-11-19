@@ -1,4 +1,8 @@
-<!doctype html>
+<?php /*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Employee-facing product storefront with search and category/stock filters. Customize card
+ * layout and filter labels here; server-side employee access is controlled by index.php.
+ */ ?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">

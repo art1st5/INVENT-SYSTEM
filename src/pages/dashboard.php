@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Displays inventory summaries, low-stock products and recent sales. Customize stat cards,
+ * table presentation and overview queries here.
+ */
 /**
  * src/pages/dashboard.php — Dashboard overview page template.
  *

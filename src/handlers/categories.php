@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Processes category create, edit and delete POST actions. Customize name validation and
+ * messages here; preserve owner checks and product-reference restrictions.
+ */
 /**
  * src/handlers/categories.php
  *
@@ -8,6 +13,7 @@
  *   - delete_category  (owner only — blocked if products still use it)
  */
 
+// Action save_category: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'save_category') {
     owner();
     $name = trim($_POST['name'] ?? '');
@@ -19,6 +25,7 @@ if ($act === 'save_category') {
     go('categories');
 }
 
+// Action edit_category: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'edit_category') {
     owner();
     $id   = (int)($_POST['id']   ?? 0);
@@ -31,6 +38,7 @@ if ($act === 'edit_category') {
     go('categories');
 }
 
+// Action delete_category: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'delete_category') {
     owner();
     $id = (int)($_POST['id'] ?? 0);

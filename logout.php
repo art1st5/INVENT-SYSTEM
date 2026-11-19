@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Ends the session and redirects to login. Customize the redirect only if the login route
+ * changes.
+ */
 /**
  * logout.php — Signs the current user out of the system.
  *

@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Loads shared product, category, supplier, sale and delivery data. Customize query limits
+ * and filters here; sorting by product_name supports binary search and the low-stock min-
+ * heap prioritizes small quantities.
+ */
 /**
  * src/queries.php
  *

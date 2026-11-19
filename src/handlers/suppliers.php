@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Processes supplier maintenance requests. Customize required fields and feedback here;
+ * coordinate with supplier forms and database columns.
+ */
 /**
  * src/handlers/suppliers.php
  *
@@ -6,6 +11,7 @@
  *   - save_supplier  (owner only)
  */
 
+// Action save_supplier: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'save_supplier') {
     owner();
     $name = trim($_POST['name'] ?? '');
@@ -17,6 +23,7 @@ if ($act === 'save_supplier') {
     go('suppliers');
 }
 
+// Action edit_supplier: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'edit_supplier') {
     owner();
     $id      = (int)($_POST['supplier_id'] ?? 0);

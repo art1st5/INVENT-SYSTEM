@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Manages product lookup, persistence, archive/restore and stock changes. Customize product
+ * business rules here; coordinate form validation and database columns.
+ */
 /**
  * src/classes/ProductRepository.php
  *
@@ -23,6 +28,7 @@ class ProductRepository extends BaseRepository
      * @param bool       $lock  Add FOR UPDATE row lock (DB query path only).
      * @param array|null $pool  Optional in-memory product array to search first.
      */
+    // Customization: Keep the ID lookup and optional row locking consistent with stock updates.
     public function findById(int $id, bool $lock = false, ?array $pool = null): ?array
     {
         // LINEAR SEARCH — scan the in-memory pool if provided
@@ -47,6 +53,7 @@ class ProductRepository extends BaseRepository
      * @param array  $sortedProducts  Product array sorted by 'product_name'.
      * @param string $name            Exact product name to find (case-insensitive).
      */
+    // Customization: Keep the input sorted by product name before binary search.
     public function findByName(array $sortedProducts, string $name): ?array
     {
         return SearchAlgorithms::binarySearch($sortedProducts, 'product_name', $name);
@@ -74,6 +81,7 @@ class ProductRepository extends BaseRepository
      * @param int   $userId Who is performing this action (for audit log)
      * @return int  The product_id that was saved
      */
+    // Customization: Adjust product validation in the handler as well as persistence here.
     public function save(array $data, int $userId): int
     {
         // Business rule: cost must not exceed price
@@ -121,6 +129,7 @@ class ProductRepository extends BaseRepository
     /**
      * setActive() — Archive (0) or restore (1) a product.
      */
+    // Customization: Preserve the archive flag and audit record when changing visibility.
     public function setActive(int $id, bool $active, int $userId): void
     {
         $this->execute(
@@ -134,6 +143,7 @@ class ProductRepository extends BaseRepository
     /**
      * decrementStock() — Reduce stock by a given quantity (used during sales).
      */
+    // Customization: Preserve stock consistency; review transaction validation before changing quantity rules.
     public function decrementStock(int $productId, int $qty): void
     {
         $this->execute(
@@ -145,6 +155,7 @@ class ProductRepository extends BaseRepository
     /**
      * incrementStock() — Increase stock (used during delivery or undo).
      */
+    // Customization: Review delivery approval before changing quantity or cost updates.
     public function incrementStock(int $productId, int $qty, ?float $newCost = null): void
     {
         if ($newCost !== null) {

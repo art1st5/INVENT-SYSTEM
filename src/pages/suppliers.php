@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Supplier listing and maintenance forms. Customize labels, table columns and edit dialog
+ * presentation; coordinate submitted fields with handlers/suppliers.php.
+ */
 /**
  * src/pages/suppliers.php — Suppliers page template.
  */

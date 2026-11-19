@@ -1,3 +1,9 @@
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Browser interactions: modals, image previews, product filtering, delivery cost autofill,
+ * report period navigation, live date and theme persistence. Customize UI behavior here;
+ * preserve DOM IDs and matching PHP form fields.
+ */
 /**
  * app.js — Client-side JavaScript for the Matet Inventory System.
  *
@@ -28,6 +34,7 @@
  * openModal(id) — Make a modal visible by adding the 'show' CSS class.
  * @param {string} id - The id attribute of the modal element.
  */
+// Customization: Match the modal ID with the corresponding HTML element.
 function openModal(id) {
     document.getElementById(id)?.classList.add('show');
 }
@@ -36,6 +43,7 @@ function openModal(id) {
  * closeModal(id) — Hide a modal by removing the 'show' CSS class.
  * @param {string} id - The id attribute of the modal element.
  */
+// Customization: Keep the CSS show class consistent with modal styling.
 function closeModal(id) {
     document.getElementById(id)?.classList.remove('show');
 }
@@ -60,6 +68,7 @@ document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e =
  * knows this is a new product, not an update), and restores all
  * toggle states to their defaults.
  */
+// Customization: Change default values together with the product form and handler.
 function resetProduct() {
     document.querySelector('#productModal form').reset(); // Clear all inputs
     document.getElementById('p_id').value        = '';   // id='' means INSERT not UPDATE
@@ -92,6 +101,7 @@ function resetProduct() {
  * Called by oninput on both the price and cost fields.
  * Shows a warning banner and disables the Save button until corrected.
  */
+// Customization: Coordinate cost and price warnings with server-side rules.
 function validateCostVsPrice() {
     const priceInput = document.getElementById('p_price');
     const costInput  = document.getElementById('p_cost');
@@ -128,6 +138,7 @@ function validateCostVsPrice() {
 /**
  * clearCostWarning() — Remove any cost/price warning (called on modal reset).
  */
+// Customization: Keep warning element IDs consistent with the form.
 function clearCostWarning() {
     const warning = document.getElementById('costPriceWarning');
     if (warning) warning.textContent = '';
@@ -145,6 +156,7 @@ function clearCostWarning() {
  *
  * @param {object} p - Product data object from the database row.
  */
+// Customization: Match property names with the product data supplied by PHP.
 function editProduct(p) {
     openModal('productModal');
     document.getElementById('modalTitle').textContent = 'Edit Product';
@@ -221,6 +233,7 @@ function editProduct(p) {
  *
  * @param {string} mode - 'upload' or 'url'
  */
+// Customization: Coordinate image input modes with the upload form.
 function toggleImgMode(mode) {
     const uploadField = document.getElementById('imgUploadField');
     const urlField    = document.getElementById('imgUrlField');
@@ -248,6 +261,7 @@ function toggleImgMode(mode) {
  *
  * @param {string} src - A data URL (from FileReader) or a web URL.
  */
+// Customization: Customize preview presentation without changing submitted image fields.
 function showImgPreview(src) {
     const wrap = document.getElementById('imgPreviewWrap');
     const img  = document.getElementById('imgPreview');
@@ -267,6 +281,7 @@ function showImgPreview(src) {
  *
  * @param {HTMLInputElement} input - The file input element.
  */
+// Customization: Keep server-side file checks even if preview behavior changes.
 function previewUploadedImage(input) {
     if (!input.files || !input.files[0]) return;
 
@@ -290,6 +305,7 @@ function previewUploadedImage(input) {
  *
  * @param {string} url - The URL typed into the URL input field.
  */
+// Customization: Keep preview and URL input behavior consistent.
 function previewImageUrl(url) {
     if (!url) {
         clearProductImage();
@@ -309,6 +325,7 @@ function previewImageUrl(url) {
  *   We reset it by cloning the element, which creates a fresh copy with
  *   no file selected, then re-attaching the onchange event listener.
  */
+// Customization: Coordinate clearing preview with submitted image values.
 function clearProductImage() {
     // Hide the preview
     const wrap = document.getElementById('imgPreviewWrap');
@@ -351,6 +368,7 @@ function clearProductImage() {
  *
  * @param {string} mode - 'existing' or 'new'
  */
+// Customization: Match category input names with the PHP handler.
 function toggleCategoryMode(mode) {
     const existing  = document.getElementById('existingCategoryFields');
     const newFields = document.getElementById('newCategoryFields');
@@ -385,6 +403,7 @@ var removedCategory = null;
  * Shows the Undo button and a hint message.
  * Prevents removal if only one category remains (the form needs at least one).
  */
+// Customization: This is a dropdown operation; do not confuse it with database deletion.
 function removeCategory() {
     const sel = document.getElementById('p_category');
     const opt = sel.options[sel.selectedIndex];
@@ -413,6 +432,7 @@ function removeCategory() {
  * Re-adds the saved option to the dropdown, selects it,
  * and hides the Undo button.
  */
+// Customization: Preserve the option data needed to restore the dropdown.
 function undoCategoryRemove() {
     if (!removedCategory) return;
 
@@ -433,6 +453,7 @@ function undoCategoryRemove() {
  * Called when opening the modal fresh (resetProduct) or when switching
  * to edit mode so we don't carry over state from a previous session.
  */
+// Customization: Reset temporary dropdown state when opening the form.
 function resetCategoryRemove() {
     removedCategory = null;
     document.getElementById('undoCategoryBtn').style.display = 'none';
@@ -449,6 +470,7 @@ function resetCategoryRemove() {
  * toggleSupplierMode(mode) — Switch between existing and new supplier sub-panels.
  * @param {string} mode - 'existing' or 'new'
  */
+// Customization: Match supplier fields with the PHP handler.
 function toggleSupplierMode(mode) {
     const existing  = document.getElementById('existingSupplierFields');
     const newFields = document.getElementById('newSupplierFields');
@@ -477,6 +499,7 @@ function toggleSupplierMode(mode) {
  *
  * @param {object} c - Category data object from the database row.
  */
+// Customization: Keep category fields aligned with the edit form.
 function editCategory(c) {
     document.getElementById('ce_id').value          = c.category_id  || '';
     document.getElementById('ce_name').value        = c.category_name || '';
@@ -500,6 +523,7 @@ function editCategory(c) {
  * Each <tr> has a data-status attribute set by PHP ('active', 'low', 'archived')
  * which the status filter matches against.
  */
+// Customization: Customize matching rules alongside table data attributes.
 function filterProducts() {
     const term   = document.getElementById('search').value.toLowerCase();
     const filter = document.getElementById('statusFilter').value;
@@ -536,6 +560,7 @@ function filterProducts() {
  * Triggered by the onchange event on the product select dropdown.
  * The user can still edit the cost manually if the delivery price differs.
  */
+// Customization: Use the selected product cost; keep server validation in place.
 function autoFillUnitCost() {
 
     const select = document.getElementById(
@@ -568,6 +593,7 @@ function autoFillUnitCost() {
  *
  * Triggered by the onchange event on the period select dropdown.
  */
+// Customization: Coordinate period values with report query filters.
 function changeReportPeriod() {
     const sel = document.getElementById('reportPeriod');
     if (!sel) return;
@@ -588,6 +614,7 @@ function changeReportPeriod() {
  * Format example: "Monday, Jan 6, 2025"
  * Called once immediately on load, then every 1000ms (1 second).
  */
+// Customization: Customize date display formatting here.
 function updateLiveDate() {
     const el = document.getElementById('live-date');
     if (!el) return;
@@ -607,12 +634,14 @@ setInterval(updateLiveDate, 1000);     // Then update every second
 
 
 // Theme toggle — black & white light/dark
+// Customization: Keep theme selectors consistent with CSS.
 function applyTheme(dark) {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     const btn = document.getElementById('darkToggle');
     if (btn) btn.textContent = dark ? '☀️' : '🌙';
 }
 
+// Customization: Keep the saved theme preference consistent with initialization.
 function toggleDarkMode() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     applyTheme(!isDark);

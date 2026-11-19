@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Displays delivery forms, product autocomplete and delivery history. Customize form labels,
+ * autocomplete layout and displayed columns here; coordinate field names with
+ * handlers/deliveries.php.
+ */
 // Deliveries page template.
 ?>
 

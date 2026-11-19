@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Main entry point: routes requests, checks account permissions, dispatches handlers and
+ * renders templates. Customize navigation labels, allowed routes and rolePages here;
+ * coordinate permissions with handlers and database roles.
+ */
 /**
  * index.php — Application entry point and router.
  *

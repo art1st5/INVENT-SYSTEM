@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Implements insertion sort, merge sort and min-heap insertion/sift-up. Customize sort keys
+ * at call sites; a heap provides parent-child order, not a fully sorted list.
+ */
 /**
  * src/classes/SortAlgorithms.php
  *
@@ -41,6 +46,7 @@ class SortAlgorithms
      * @param string $key   The key to sort by (e.g. 'product_name').
      * @return array        The sorted array.
      */
+    // Customization: The key determines the ordering; retain shifting logic.
     public static function insertionSort(array $data, string $key): array
     {
         $n = count($data);
@@ -84,6 +90,7 @@ class SortAlgorithms
      * @param string $key   The key to sort by.
      * @return array        A new sorted array (original is not modified).
      */
+    // Customization: The key determines the ordering; retain recursive splitting and merging.
     public static function mergeSort(array $data, string $key): array
     {
         $n = count($data);
@@ -108,6 +115,7 @@ class SortAlgorithms
      * Compares the front elements of each half and always picks the smaller
      * one, building the merged result left to right.
      */
+    // Customization: Keep both input halves sorted using the same comparison.
     private static function merge(array $left, array $right, string $key): array
     {
         $result = [];
@@ -152,6 +160,7 @@ class SortAlgorithms
      * @param array  $item    The new associative array row to insert.
      * @param string $key     The numeric key to compare (e.g. 'product_quantity').
      */
+    // Customization: Preserve the heap property after appending an item.
     public static function heapInsert(array &$heap, array $item, string $key): void
     {
         // Append the new item at the end of the heap array
@@ -173,6 +182,7 @@ class SortAlgorithms
      * @param int    $index  The starting index to sift up from.
      * @param string $key    The key holding the numeric priority value.
      */
+    // Customization: Keep parent-child comparisons consistent with a min-heap.
     public static function siftUp(array &$heap, int $index, string $key): void
     {
         while ($index > 0) {
@@ -206,6 +216,7 @@ class SortAlgorithms
      * @param string $key   The key to compare.
      * @return array        A valid min-heap array.
      */
+    // Customization: Change the priority key at the caller; a heap is not a fully sorted list.
     public static function buildMinHeap(array $data, string $key): array
     {
         $heap = [];

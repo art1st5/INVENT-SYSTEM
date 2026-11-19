@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Displays categories and their associated products. Customize table headings, category
+ * controls and layout here; writes are handled by handlers/categories.php.
+ */
 /**
  * src/pages/categories.php — Categories page template.
  *

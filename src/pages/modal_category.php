@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Edit-category dialog populated by app.js. Customize labels and layout; preserve field
+ * names and element IDs used by JavaScript and the handler.
+ */
 /**
  * src/pages/modal_category.php — Edit Category modal.
  *

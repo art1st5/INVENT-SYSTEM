@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Processes staff account management and owner-password verification. Customize allowed
+ * roles and password rules together with database.sql, index.php and users page; preserve
+ * authorization.
+ */
 /**
  * src/handlers/users.php
  *
@@ -16,6 +22,7 @@
  *     3. Only proceed if verification passes.
  */
 
+// Action add_user: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'add_user') {
 
     // Only owners can reach this action — owner() kills the request otherwise
@@ -59,6 +66,7 @@ if ($act === 'add_user') {
     go('users');
 }
 
+// Action delete_user: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'delete_user') {
 
     // Only owners can delete accounts

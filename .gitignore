@@ -1,3 +1,6 @@
+# FUNCTION AND CUSTOMIZATION (developer guide):
+# Controls which files Git ignores. Customize patterns for generated files and local
+# secrets; uploaded images and local environment files are intentionally excluded.
 # ── Uploaded product images ───────────────────────────────────────────────────
 # Keep the folder in git (via .gitkeep) but ignore actual uploaded files
 uploads/*

@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Creates the first owner account. Customize installation form labels here; preserve the
+ * existing-account lockout.
+ */
 /**
  * setup.php — First-time installation page.
  *

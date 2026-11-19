@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Add/edit product dialog with pricing, stock, category, supplier and image fields.
+ * Customize labels, layout and input defaults here; coordinate with app.js and
+ * handlers/products.php.
+ */
 /**
  * src/pages/modal_product.php — Add / Edit Product modal (horizontal layout).
  */

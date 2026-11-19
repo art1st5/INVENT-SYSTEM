@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Owner-facing staff account interface. Customize role labels and form layout here; actual
+ * role validation belongs in handlers/users.php and database.sql.
+ */
 /**
  * src/pages/users.php — Staff account management page (owner only).
  */

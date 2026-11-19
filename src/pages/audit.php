@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Displays recent activity records for owners. Customize table headings and displayed
+ * history limit here; logging itself is handled elsewhere.
+ */
 /**
  * src/pages/audit.php — Activity log page template (owner only).
  *

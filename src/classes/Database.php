@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Singleton PDO connection wrapper. Customize private host, db, user and pass values
+ * together with config.php; preserve PDO error handling.
+ */
 /**
  * src/classes/Database.php
  *
@@ -18,6 +23,7 @@ class Database
     private string $pass = '';
 
     // Private constructor — prevents direct instantiation (Singleton pattern)
+    // Customization: Dependencies are initialized here; coordinate changes with object creation sites.
     private function __construct()
     {
         $this->pdo = new PDO(
@@ -35,6 +41,7 @@ class Database
      * getInstance() — Returns the single shared Database instance.
      * Creates it on first call; returns the same one after that.
      */
+    // Customization: Preserve the shared-instance pattern.
     public static function getInstance(): Database
     {
         if (self::$instance === null) {
@@ -47,6 +54,7 @@ class Database
      * getConnection() — Returns the underlying PDO object.
      * This is the only public way to reach the PDO connection.
      */
+    // Customization: Returns the PDO connection used by repositories.
     public function getConnection(): PDO
     {
         return $this->pdo;

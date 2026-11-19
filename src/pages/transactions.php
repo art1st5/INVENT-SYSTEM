@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Multi-product sale form, autocomplete, totals, review and undo interface. Customize cart
+ * layout and labels here; coordinate field names and calculations with the transaction
+ * handler and repository.
+ */
 /**
  * src/pages/transactions.php — Multi-product transaction page.
  *

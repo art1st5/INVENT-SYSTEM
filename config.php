@@ -1,4 +1,11 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Shared session, PDO connection, authorization and helper functions. Customize $host, $db,
+ * $user and $pass for your server; keep Database.php credentials consistent.
+ * RESET_SECRET_KEY controls recovery access; change it before deployment. Preserve CSRF and
+ * authorization checks.
+ */
 /**
  * config.php — Shared configuration loaded by every page.
  *

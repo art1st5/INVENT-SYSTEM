@@ -1,4 +1,10 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Processes product forms, image uploads, inline category/supplier creation and
+ * archive/restore. Customize upload size (currently 2 MB), allowed image types and form
+ * defaults here; match the product modal and preserve file validation.
+ */
 /**
  * src/handlers/products.php
  *
@@ -7,6 +13,7 @@
  * as they are form-processing concerns, not domain logic.
  */
 
+// Action save_product: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'save_product') {
 
     notAccountant();
@@ -95,6 +102,7 @@ if ($act === 'save_product') {
     go('products');
 }
 
+// Action archive_product: customize its validation and business rules here; keep form action, permissions and database fields aligned.
 if ($act === 'archive_product' || $act === 'restore_product') {
     notAccountant();
     $id     = (int)$_POST['id'];

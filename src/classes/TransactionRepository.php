@@ -1,4 +1,9 @@
 <?php
+/*
+ * FUNCTION AND CUSTOMIZATION (developer guide):
+ * Confirms sales, reverses transactions and retrieves recent sales. Customize sale and undo
+ * rules here; preserve atomic stock updates and historical prices.
+ */
 /**
  * src/classes/TransactionRepository.php
  *
@@ -10,6 +15,7 @@ class TransactionRepository extends BaseRepository
 {
     private ProductRepository $products;
 
+    // Customization: Dependencies are initialized here; coordinate changes with object creation sites.
     public function __construct(PDO $pdo, Auditable $logger, ProductRepository $products)
     {
         parent::__construct($pdo, $logger);
@@ -24,6 +30,7 @@ class TransactionRepository extends BaseRepository
      * @param int   $userId   Who is confirming the sale
      * @return int  The new transaction_id
      */
+    // Customization: Keep sale confirmation, stock changes and audit logging consistent.
     public function confirm(array $pending, int $userId): int
     {
         $this->pdo->beginTransaction();
@@ -81,6 +88,7 @@ class TransactionRepository extends BaseRepository
      * @param int $tid    Transaction ID to reverse
      * @param int $userId Who is undoing it
      */
+    // Customization: Preserve stock restoration and transaction status checks.
     public function undo(int $tid, int $userId): void
     {
         $this->pdo->beginTransaction();
@@ -118,6 +126,7 @@ class TransactionRepository extends BaseRepository
     /**
      * getRecent() — Fetch the most recent transactions with line-item detail.
      */
+    // Customization: The limit controls how many recent records are retrieved.
     public function getRecent(int $limit = 100): array
     {
         return $this->queryAll(
